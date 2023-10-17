@@ -1,4 +1,5 @@
 short: Swagger Petstore
+version: "1.0.0"
 operations:
   - name: create-pets
     group: pets

@@ -25,6 +25,7 @@ type API struct {
 	RestishVersion string      `json:"restish_version" yaml:"restish_version"`
 	Short          string      `json:"short" yaml:"short"`
 	Long           string      `json:"long,omitempty" yaml:"long,omitempty"`
+	Version        string      `json:"version,omitempty" yaml:"version,omitempty"`
 	Operations     []Operation `json:"operations,omitempty" yaml:"operations,omitempty"`
 	Auth           []APIAuth   `json:"auth,omitempty" yaml:"auth,omitempty"`
 	AutoConfig     AutoConfig  `json:"auto_config,omitempty" yaml:"auto_config,omitempty"`
@@ -65,6 +66,9 @@ func setupRootFromAPI(root *cobra.Command, api *API) {
 
 	if root.Long == "" {
 		root.Long = api.Long
+		if api.Version != "" {
+			root.Long = fmt.Sprintf("%s (%s)", root.Long, api.Version)
+		}
 	}
 
 	for _, op := range api.Operations {

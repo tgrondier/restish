@@ -676,14 +676,17 @@ func loadOpenAPI3(cfg Resolver, cmd *cobra.Command, location *url.URL, resp *htt
 
 	short := ""
 	long := ""
+	version := ""
 	if model.Info != nil {
 		short = getExt(model.Info.Extensions, ExtName, model.Info.Title)
 		long = getExt(model.Info.Extensions, ExtDescription, model.Info.Description)
+		version = model.Info.Version
 	}
 
 	api := cli.API{
 		Short:      short,
 		Long:       long,
+		Version:    version,
 		Operations: operations,
 	}
 

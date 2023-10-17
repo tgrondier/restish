@@ -1,4 +1,5 @@
 short: Test API
+version: "1.0.0"
 operations:
   - name: delete-items-item-id
     aliases: []
